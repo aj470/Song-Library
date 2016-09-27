@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.43478260869565216" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60">
+<SplitPane dividerPositions="0.3595317725752508" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="285.0">
          <children>
@@ -17,23 +17,23 @@
                <children>
                   <Button mnemonicParsing="false" text="Display library">
                      <VBox.margin>
-                        <Insets left="80.0" top="70.0" />
+                        <Insets left="55.0" top="60.0" />
                      </VBox.margin>
                   </Button>
                </children>
             </VBox>
             <VBox layoutY="116.0" prefHeight="98.0" prefWidth="208.0">
                <children>
-                  <VBox minWidth="-Infinity" prefHeight="100.0" prefWidth="250.0">
+                  <VBox minWidth="-Infinity" prefHeight="135.0" prefWidth="210.0">
                      <children>
                         <TextField prefHeight="21.0" prefWidth="135.0">
                            <VBox.margin>
-                              <Insets left="35.0" right="25.0" top="70.0" />
+                              <Insets left="25.0" right="20.0" top="60.0" />
                            </VBox.margin>
                         </TextField>
                         <Button mnemonicParsing="false" text="Details">
                            <VBox.margin>
-                              <Insets left="95.0" top="5.0" />
+                              <Insets left="75.0" top="5.0" />
                            </VBox.margin>
                         </Button>
                      </children>
@@ -42,18 +42,18 @@
             </VBox>
             <VBox layoutY="225.0" prefHeight="120.0" prefWidth="208.0">
                <children>
-                  <VBox prefHeight="125.0" prefWidth="247.0">
+                  <VBox minWidth="-Infinity" prefHeight="130.0" prefWidth="46.0">
                      <children>
                         <TextField minWidth="-Infinity" prefHeight="35.0" prefWidth="72.0">
                            <VBox.margin>
-                              <Insets left="35.0" right="25.0" top="70.0" />
+                              <Insets left="25.0" right="20.0" top="70.0" />
                            </VBox.margin>
                         </TextField>
-                        <HBox minWidth="-Infinity" prefHeight="36.0" prefWidth="247.0">
+                        <HBox minWidth="-Infinity" prefHeight="35.0" prefWidth="210.0">
                            <children>
                               <Button mnemonicParsing="false" text="Add">
                                  <HBox.margin>
-                                    <Insets left="33.0" right="10.0" top="5.0" />
+                                    <Insets left="15.0" right="5.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
                               <Button mnemonicParsing="false" text="Delete">
@@ -63,7 +63,7 @@
                               </Button>
                               <Button mnemonicParsing="false" text="Edit">
                                  <HBox.margin>
-                                    <Insets left="10.0" top="5.0" />
+                                    <Insets left="5.0" top="5.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -74,9 +74,9 @@
             </VBox>
          </children>
       </AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="356.0">
          <children>
-            <ListView layoutX="-14.0" layoutY="-7.0" prefHeight="398.0" prefWidth="334.0" />
+            <ListView layoutX="-14.0" layoutY="-7.0" prefHeight="409.0" prefWidth="400.0" />
          </children>
       </AnchorPane>
   </items>
