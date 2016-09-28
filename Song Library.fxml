@@ -2,50 +2,85 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="                                                    Song Library" textAlignment="CENTER" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane alignment="CENTER" animated="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="384.0" prefWidth="514.0" text="Song Library" textAlignment="CENTER" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="598.0">
          <children>
-            <SplitPane dividerPositions="0.8306010928961749" layoutY="-1.0" orientation="VERTICAL" prefHeight="368.0" prefWidth="600.0">
+            <SplitPane dividerPositions="0.484375" layoutX="-2.0" layoutY="-3.0" prefHeight="354.0" prefWidth="514.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <GridPane prefHeight="61.0" prefWidth="600.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="284.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="316.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="341.0" minWidth="10.0" prefWidth="316.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <VBox layoutX="1.0" layoutY="-1.0" prefHeight="354.0" prefWidth="241.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="111.0" text="Delete" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="50.0" right="50.0" />
-                                 </GridPane.margin></Button>
-                              <Button layoutX="188.0" layoutY="21.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="111.0" text="Edit" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="50.0" right="50.0" />
-                                 </GridPane.margin>
-                              </Button>
-                              <Button layoutX="188.0" layoutY="21.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="111.0" text="Add">
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="30.0" right="35.0" />
-                                 </GridPane.margin>
-                              </Button>
+                              <Label text="Enter the following:" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets left="55.0" top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField promptText="Song Name" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="30.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField promptText="Artist">
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="20.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox prefHeight="100.0" prefWidth="244.0">
+                                       <children>
+                                          <TextField promptText="Album (Optional)" VBox.vgrow="ALWAYS">
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="20.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <TextField promptText="Year (Optional)" VBox.vgrow="ALWAYS">
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" top="20.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" text="Add" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets left="30.0" top="15.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <Button mnemonicParsing="false" text="Delete" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" top="15.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                                <Button mnemonicParsing="false" text="Edit" HBox.hgrow="ALWAYS">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" top="15.0" />
+                                                   </HBox.margin>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
                            </children>
-                        </GridPane>
+                        </VBox>
                      </children>
                   </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ListView layoutY="1.0" prefHeight="352.0" prefWidth="262.0" />
+                     </children></AnchorPane>
               </items>
             </SplitPane>
          </children></AnchorPane>
