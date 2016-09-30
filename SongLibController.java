@@ -49,8 +49,7 @@ public class SongLibController
                 "570",
                 "This is Gospel",
                 "White Washed",
-                "Song",
-                "Caca");
+                "Song");
 
         FXCollections.sort(obsList);
 
