@@ -1,160 +1,121 @@
 package view;
 
 import javafx.beans.Observable;
+import javafx.event.ActionEvent; // Need this to create an action event parameter for button click method.
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Song;
-import model.Backend;
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Optional;
+import java.util.*;
 
-public class SongLibController {
+public class SongLibController
+{
+	@FXML
+    private TextField sName;
+	
     @FXML
-    TextField sName;
+    private TextField sArtist;
+    
     @FXML
-    TextField sArtist;
+    private TextField sAlbum;
+    
     @FXML
-    TextField sAlbum;
-    @FXML
-    TextField sYear;
-
-    @FXML
-    Button add;
-    @FXML
-    Button delete;
-    @FXML
-    Button edit;
-    @FXML
-    Button display;
-
-    @FXML
-    ListView<Song> songList = new ListView<>();
-
-    private ObservableList<Song> obsList;
-
-
+    private TextField sYear;
+    
+    @FXML 
+    private ListView<String> songDisplay = new ListView<>();
+    
+    // A JavaFX TextArea element to display the song details when selected
+    @FXML 
+    private TextArea songDetailDisplay; 
+    
+    // ObservableList for song display and selection
+    private ObservableList<String> songList;
+    
+    // Here is an ArrayList for holding all the Song objects that are created.
+    ArrayList<Song> songCollection;
+    
     public void start(Stage mainStage)
     {
-        songList.setEditable(true);
+        songDisplay.setEditable(true);
         mainStage.setTitle("Song Library");
 
-        obsList = FXCollections.observableArrayList();
+        songList = FXCollections.observableArrayList();
 
-        FXCollections.sort(obsList);
+        FXCollections.sort(songList);
 
         //display list
-        songList.setItems(obsList);
-        songList.getSelectionModel().select(0);
+        songDisplay.setItems(songList);
+        songDisplay.getSelectionModel();
     }
 
-    public void click(ActionEvent e) throws IOException
-    {
-        Button x = (Button) e.getSource();
-        Backend backend = new Backend();
-        boolean success;
-        String n, a, header, content;
-        String alb = "";
-        String y = "";
+    // Name of method = name assigned in #directive in fxml file for onAction attribute
+    public void clickAdd (ActionEvent e) {
+    	
+    	// Here we check to see if the TextBox is empty. If so, we set the enteredSong to null.
+    	// (I have no idea what kind of value getText() returns if the TextBox is empty, but it isn't null or "".)
+    	String enteredSong;
+    	if (sName.getText().isEmpty()) {
+    		enteredSong = null;
+    	} else {
+    		enteredSong = sName.getText();
+    	}
+    	
+    	// Here we check to see if the TextBox is empty. If so, we set the enteredArtist to null.
+    	String enteredArtist;
+    	if (sArtist.getText().isEmpty()) {
+    		enteredArtist = null;
+    	} else {
+    		enteredArtist = sArtist.getText();
+    	}
+    	
+    	// Here we check to see if the TextBox is empty. If so, we set the enteredAlbum to null.
+    	String enteredAlbum;
+    	if (sAlbum.getText().isEmpty()) {
+    		enteredAlbum = null;
+    	} else {
+    		enteredAlbum = sAlbum.getText();
+    	}
+    	
+    	// Here we check to see if the TextBox is empty. If so, we set the enteredYear to null.
+    	String enteredYear;
+    	if (sYear.getText().isEmpty()) {
+    		enteredYear = null;
+    	} else {
+    		enteredYear = sYear.getText();
+    	}
+    	
+    	// So, then create a Song object.
+    	
+    	Song newSong = new Song();
+    	
+    	// Now what?
+    }
+    
+    public void clickDelete (ActionEvent e) {
+    	String songSelection = songDisplay.getSelectionModel().getSelectedItem();
+    	songList.remove(songSelection);
 
-        n = sName.getText();
-        a = sArtist.getText();
-        alb = sAlbum.getText();
-        y = sYear.getText();
+    }
+    public void clickEdit (ActionEvent e) {
+    	String songSelection = songDisplay.getSelectionModel().getSelectedItem();
+    	
 
-        if (x == add)
-        {
-            //check if name and artist were entered
-            if(n.isEmpty() || a.isEmpty())
-            {
-                //error prompt
-                header = "Missing Information!";
-                content = "Song name and artist are required!";
-                backend.errorPrompt(header, content);
-            }
-            else
-            {
-                //check if song is duplicate
-                if(backend.exists(n, a))
-                {
-                    //error prompt
-                    header = "Add Failed!";
-                    content = "The song entered is already in the Library!";
-                    backend.errorPrompt(header, content);
-                }
-                else
-                {
-                    backend.add(n, a, alb, y);
-                }
-            }
-
-        }
-        else if (x == delete)
-        {
-            if(n.isEmpty() || a.isEmpty())
-            {
-                //error prompt
-                header = "Missing Information!";
-                content = "Song name and artist are required!";
-                backend.errorPrompt(header, content);
-            }
-            else
-            {
-                //check if song is duplicate
-                if(!backend.exists(n, a))
-                {
-                    //error prompt
-                    header = "Delete Failed!";
-                    content = "The song entered is not in the Library!";
-                    backend.errorPrompt(header, content);
-                }
-                else
-                {
-                    backend.delete(n, a);
-                }
-            }
-        }
-        else if(x == edit)
-        {
-            //check if exists
-            if(backend.exists(n, a))
-            {
-                //check if all input fields are empty
-                if(n.isEmpty() && a.isEmpty() && alb.isEmpty() && y.isEmpty())
-                {
-                    header = "Edit Failed!";
-                    content = "Please input changes before clicking edit";
-                }
-                else
-                {
-                    Song s = songList.getSelectionModel().getSelectedItem();
-                    backend.edit(s, n, a, alb, y);
-                }
-
-            }
-            else
-            {
-                //error prompt
-                header = "Error!";
-                content = "The song entered is not in the Library!";
-                backend.errorPrompt(header, content);
-            }
-        }
-        else //display was clicked
-        {
-            content = songList.getSelectionModel().getSelectedItem().toString();
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Display");
-            alert.setHeaderText("Song Details");
-            alert.setContentText(content);
-
-            alert.showAndWait();
-        }
+    }
+    
+    // Name of method = name assigned in #directive in fxml file for onAction attribute
+    public void songListSelection (MouseEvent e) {
+    	songDetailDisplay.setText("clicked on " + songDisplay.getSelectionModel().getSelectedItem()
+    			+ "\n" + "artist:" + "\n" + "album:" + "\n" + "year");
+    	
     }
 }
