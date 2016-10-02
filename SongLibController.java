@@ -14,11 +14,11 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Song;
+import model.backend;
 
 import java.util.*;
 
-public class SongLibController
-{
+public class SongLibController extends backend {
 	@FXML
     private TextField sName;
 	
@@ -44,8 +44,7 @@ public class SongLibController
     // Here is an ArrayList for holding all the Song objects that are created.
     ArrayList<Song> songCollection;
     
-    public void start(Stage mainStage)
-    {
+    public void start(Stage mainStage) {
         songDisplay.setEditable(true);
         mainStage.setTitle("Song Library");
 
@@ -87,18 +86,16 @@ public class SongLibController
     	}
     	
     	// Here we check to see if the TextBox is empty. If so, we set the enteredYear to null.
-    	String enteredYear;
+    	int enteredYear;
     	if (sYear.getText().isEmpty()) {
-    		enteredYear = null;
+    		enteredYear = 0;
     	} else {
-    		enteredYear = sYear.getText();
+    		enteredYear = Integer.parseInt(sYear.getText());
     	}
     	
-    	// So, then create a Song object.
-    	
-    	Song newSong = new Song();
-    	
-    	// Now what?
+    	// So, then create a Song object and add it to the ArrayList songObjects.
+    	songObjects.add(new Song(enteredSong, enteredArtist, enteredAlbum, enteredYear));
+    	songList.add(enteredSong);
     }
     
     public void clickDelete (ActionEvent e) {
