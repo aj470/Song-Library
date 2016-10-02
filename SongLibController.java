@@ -94,8 +94,10 @@ public class SongLibController extends backend {
     	}
     	
     	// So, then create a Song object and add it to the ArrayList songObjects.
+	// Now each place in the ArrayList is a reference to a particular instance of a song.
+	// We need a way to access them when a user wants to edit or delete one.
     	songObjects.add(new Song(enteredSong, enteredArtist, enteredAlbum, enteredYear));
-    	songList.add(enteredSong);
+    	songList.add(enteredSong); // Here just add the song to the ObservableList to display it to the user.
     }
     
     public void clickDelete (ActionEvent e) {
