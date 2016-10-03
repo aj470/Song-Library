@@ -60,3 +60,14 @@ public class Backend
             System.out.println("error");
         }
     }
+    
+     public void errorPrompt(String header, String content)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Dialog");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+
+        alert.showAndWait();
+    }
+}
