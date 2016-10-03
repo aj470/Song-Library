@@ -158,6 +158,11 @@ public class SongLibController {
                 else
                 {
                     Song s = songList.getSelectionModel().getSelectedItem();
+                    songList.getSelectionModel().getSelectedItem().setName(n);
+                    songList.getSelectionModel().getSelectedItem().setArtist(a);
+                    songList.getSelectionModel().getSelectedItem().setAlbum(alb);
+                    songList.getSelectionModel().getSelectedItem().setYear(y);
+                    songDisplay(s);
                     backend.edit(s, n, a, alb, y);
                 }
 
