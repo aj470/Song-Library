@@ -20,7 +20,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
 
-public class SongLibController {
+public class SongLibController
+{
     @FXML
     TextField sName;
     @FXML
@@ -44,28 +45,17 @@ public class SongLibController {
     @FXML
     ListView<Song> songList = new ListView<>();
 
+    Backend backend = new Backend();
+
     // ObservableList for song display and selection
     private ObservableList<Song> obsList;
 
     // Here is an ArrayList for holding all the Song objects that are created.
     ArrayList<Song> songCollection = new ArrayList<Song>();
 
-    class myListener implements ChangeListener<Song>
+
+    public void start(Stage mainStage)
     {
-
-        public void changed(ObservableValue<? extends Song> observable, Song oldValue, Song newValue)
-        {
-            if(newValue != null)
-            {
-                songDisplay(newValue);
-            }
-        }
-    }
-
-
-    myListener listener = new myListener();
-
-    public void start(Stage mainStage) {
         songList.setEditable(true);
         mainStage.setTitle("Song Library");
 
@@ -78,6 +68,7 @@ public class SongLibController {
         songList.getSelectionModel().select(0);
     }
 
+
     //comparator for sorting observable list
     Comparator<Song> compareToSong = new Comparator<Song>()
     {
@@ -89,7 +80,6 @@ public class SongLibController {
     };
         public void click(ActionEvent e) throws IOException {
             Button x = (Button) e.getSource();
-            Backend backend = new Backend();
             String n, a, header, content;
             String alb = "";
             String y = "";
@@ -118,10 +108,12 @@ public class SongLibController {
                         header = "Add Failed!";
                         content = "The song entered is already in the Library!";
                         backend.errorPrompt(header, content);
-                    } else
-                        {
+                    }
+                    else
+                    {
                         Song song = new Song(n, a, alb, y);
 
+                        songCollection.add(song);
                         obsList.add(song);
                         int ind = 0;
                         for (int i = 0; i < obsList.size(); i++) {
@@ -130,9 +122,8 @@ public class SongLibController {
                             }
                         }
                         songList.getSelectionModel().select(ind);
-                        //songList.getSelectionModel().selectedItemProperty().removeListener(listener);
+                        songCollection.sort(compareToSong);
                         obsList.sort(compareToSong);
-                        //songList.getSelectionModel().selectedItemProperty().addListener(listener);
 
                         songDisplay(song);
                         backend.add(song);
@@ -154,10 +145,12 @@ public class SongLibController {
                     Song song = new Song(n, a, alb, y);
                     if (songList.getSelectionModel().getSelectedIndex() == 0)
                     {
+                        songCollection.remove(0);
                         obsList.remove(0);
                         songList.getSelectionModel().select(0);
                     } else
                     {
+                        songCollection.remove(songList.getSelectionModel().getSelectedIndex());
                         obsList.remove(songList.getSelectionModel().getSelectedIndex());
                         songList.getSelectionModel().select(songList.getSelectionModel().getSelectedIndex() + 1);
                     }
@@ -206,6 +199,7 @@ public class SongLibController {
                             songList.getSelectionModel().getSelectedItem().setYear(y);
                         }
 
+                        songCollection.set(songList.getSelectionModel().getSelectedIndex(), s);
                         obsList.sort(compareToSong);
                         songDisplay(s);
                         backend.edit(s, n, a, alb, y);
