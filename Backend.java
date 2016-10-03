@@ -36,6 +36,27 @@ public class Backend
             return duplicate;
     }
 
+    
+    public void writeToFile(ArrayList<Song> songData)
+{
+    File fileName = new File("Library.txt");
+    
+    try
+    {
+        FileWriter fw = new FileWriter(fileName);
+        Writer output = new BufferedWriter(fw);
+        
+        int size = songData.size();
+        for(int i = 0; i < size; i++)
+        {
+            output.write(songData.get(i).toString());
+        }
+    } catch(Exception e)
+    {
+        System.out.println(e);
+    }       
+}
+    
     public void add(Song song)
     {
        // x.format("%s%s%s%s",song.getName() + "," , song.getArtist() + ",", song.getAlbum() + ",", song.getYear() + ",");
