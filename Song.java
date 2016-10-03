@@ -8,7 +8,7 @@ public class Song implements Comparable<Song>
     private String songName;
     private String songArtist;
     private String songAlbum;
-    private int songYear;
+    private String songYear;
 
     //constructor with no parameters
     public Song()
@@ -20,7 +20,7 @@ public class Song implements Comparable<Song>
         alert.showAndWait();
     }
 
-    public Song (String name, String artist, String album, int year)
+    public Song (String name, String artist, String album, String year)
     {
         songName = name;
         songArtist = artist;
@@ -30,17 +30,12 @@ public class Song implements Comparable<Song>
 
     public Song(String name, String artist)
     {
-        this(name, artist, null, 0);
+        this(name, artist, "", "");
     }
 
     public Song(String name, String artist, String album)
     {
-        this(name, artist, album, 0);
-    }
-
-    public Song(String name, String artist, int year)
-    {
-        this(name, artist, null, year);
+        this(name, artist, album, "");
     }
 
     public void setName (String name)
@@ -58,7 +53,7 @@ public class Song implements Comparable<Song>
         songAlbum = album;
     }
 
-    public void setYear (int year)
+    public void setYear (String year)
     {
         songYear = year;
     }
@@ -78,7 +73,7 @@ public class Song implements Comparable<Song>
         return songAlbum;
     }
 
-    public int getYear ()
+    public String getYear ()
     {
         return songYear;
     }
