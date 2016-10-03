@@ -50,20 +50,20 @@ public class SongLibController {
     // Here is an ArrayList for holding all the Song objects that are created.
     ArrayList<Song> songCollection = new ArrayList<Song>();
 
-    class Listener implements ChangeListener<Song>
+    class myListener implements ChangeListener<Song>
     {
 
         public void changed(ObservableValue<? extends Song> observable, Song oldValue, Song newValue)
         {
-
-            songDisplay(newValue);
-
+            if(newValue != null)
+            {
+                songDisplay(newValue);
+            }
         }
-
     }
 
 
-    Listener listener = new Listener();
+    myListener listener = new myListener();
 
     public void start(Stage mainStage) {
         songList.setEditable(true);
@@ -78,6 +78,7 @@ public class SongLibController {
         songList.getSelectionModel().select(0);
     }
 
+    //comparator for sorting observable list
     Comparator<Song> compareToSong = new Comparator<Song>()
     {
         @Override
@@ -98,14 +99,18 @@ public class SongLibController {
             alb = sAlbum.getText();
             y = sYear.getText();
 
-            if (x == add) {
+            if (x == add)
+            {
                 //check if name and artist were entered
-                if (n.isEmpty() || a.isEmpty()) {
+                if (n.isEmpty() || a.isEmpty())
+                {
                     //error prompt
                     header = "Missing Information!";
                     content = "Song name and artist are required!";
                     backend.errorPrompt(header, content);
-                } else {
+                }
+                else
+                    {
                     //check if song is duplicate
                     if (backend.exists(n, a, obsList))
                     {
@@ -125,72 +130,114 @@ public class SongLibController {
                             }
                         }
                         songList.getSelectionModel().select(ind);
-                        songList.getSelectionModel().selectedItemProperty().removeListener(listener);
+                        //songList.getSelectionModel().selectedItemProperty().removeListener(listener);
                         obsList.sort(compareToSong);
-                        songList.getSelectionModel().selectedItemProperty().addListener(listener);
+                        //songList.getSelectionModel().selectedItemProperty().addListener(listener);
 
                         songDisplay(song);
                         backend.add(song);
                     }
                 }
 
-            } else if (x == delete) {
-                if (n.isEmpty() || a.isEmpty()) {
+            }
+            else if (x == delete)
+            {
+                if (songList.getSelectionModel().getSelectedItem() == null)
+                {
                     //error prompt
-                    header = "Missing Information!";
-                    content = "Song name and artist are required!";
+                    header = "Error!";
+                    content = "Library is empty!";
                     backend.errorPrompt(header, content);
-                } else {
-                    //check if song is duplicate
-                    if (!backend.exists(n, a, obsList)) {
-                        //error prompt
-                        header = "Delete Failed!";
-                        content = "The song entered is not in the Library!";
-                        backend.errorPrompt(header, content);
-                    } else {
-                        Song song = new Song(n, a, alb, y);
-                        if (songList.getSelectionModel().getSelectedIndex() == 0) {
-                            obsList.remove(0);
-                            songList.getSelectionModel().select(0);
-                        } else {
-                            obsList.remove(songList.getSelectionModel().getSelectedIndex());
-                            songList.getSelectionModel().select(songList.getSelectionModel().getSelectedIndex() + 1);
-                        }
-                        backend.delete(song);
-                    }
                 }
-            } else //x == edit
+                else
+                {
+                    Song song = new Song(n, a, alb, y);
+                    if (songList.getSelectionModel().getSelectedIndex() == 0)
+                    {
+                        obsList.remove(0);
+                        songList.getSelectionModel().select(0);
+                    } else
+                    {
+                        obsList.remove(songList.getSelectionModel().getSelectedIndex());
+                        songList.getSelectionModel().select(songList.getSelectionModel().getSelectedIndex() + 1);
+                    }
+                    backend.delete(song);
+
+                }
+            }
+            else //x == edit
             {
                 //check if exists
-                if (backend.exists(n, a, obsList)) {
+                if (songList.getSelectionModel().getSelectedItem() != null)
+                {
+                    if (backend.exists(n, a, obsList))
+                    {
+                        header = "Edit Failed!";
+                        content = "Song is a duplicate!";
+                        backend.errorPrompt(header, content);
+                    }
                     //check if all input fields are empty
-                    if (n.isEmpty() && a.isEmpty() && alb.isEmpty() && y.isEmpty()) {
+                    else if (n.isEmpty() && a.isEmpty() && alb.isEmpty() && y.isEmpty())
+                    {
                         header = "Edit Failed!";
                         content = "Please input changes before clicking edit";
-                    } else {
+                        backend.errorPrompt(header, content);
+                    }
+                    else
+                    {
                         Song s = songList.getSelectionModel().getSelectedItem();
-                        songList.getSelectionModel().getSelectedItem().setName(n);
-                        songList.getSelectionModel().getSelectedItem().setArtist(a);
-                        songList.getSelectionModel().getSelectedItem().setAlbum(alb);
-                        songList.getSelectionModel().getSelectedItem().setYear(y);
+                        if(n.isEmpty())
+                        {
+                            songList.getSelectionModel().getSelectedItem().setArtist(a);
+                            songList.getSelectionModel().getSelectedItem().setAlbum(alb);
+                            songList.getSelectionModel().getSelectedItem().setYear(y);
+                        }
+                        else if(a.isEmpty())
+                        {
+                            songList.getSelectionModel().getSelectedItem().setArtist(n);
+                            songList.getSelectionModel().getSelectedItem().setAlbum(alb);
+                            songList.getSelectionModel().getSelectedItem().setYear(y);
+                        }
+                        else
+                        {
+                            songList.getSelectionModel().getSelectedItem().setName(n);
+                            songList.getSelectionModel().getSelectedItem().setArtist(a);
+                            songList.getSelectionModel().getSelectedItem().setAlbum(alb);
+                            songList.getSelectionModel().getSelectedItem().setYear(y);
+                        }
+
+                        obsList.sort(compareToSong);
                         songDisplay(s);
                         backend.edit(s, n, a, alb, y);
                     }
 
-                } else {
+                }
+                else
+                {
                     //error prompt
                     header = "Error!";
-                    content = "The song entered is not in the Library!";
+                    content = "Library is empty!";
                     backend.errorPrompt(header, content);
                 }
             }
         }
 
-        public void songListSelection(MouseEvent e) {
-            songDisplay(songList.getSelectionModel().getSelectedItem());
+        public void songListSelection(MouseEvent e)
+        {
+            sName.clear();
+            sArtist.clear();
+            sAlbum.clear();
+            sYear.clear();
+
+            if(songList.getSelectionModel().getSelectedItem() != null)
+            {
+                songDisplay(songList.getSelectionModel().getSelectedItem());
+            }
+
         }
 
-        public void songDisplay(Song s) {
+        public void songDisplay(Song s)
+        {
             songDetailDisplay.setText
                     ("Song: " + s.getName() + "\n" +
                             "Artist: " + s.getArtist() + "\n" +
