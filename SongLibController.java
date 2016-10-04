@@ -150,6 +150,7 @@ public class SongLibController
                         songCollection.remove(songList.getSelectionModel().getSelectedIndex());
                         obsList.remove(songList.getSelectionModel().getSelectedIndex());
                         songList.getSelectionModel().select(songList.getSelectionModel().getSelectedIndex() + 1);
+                        songDisplay(songList.getSelectionModel().getSelectedItem());
                     }
                 }
             }
