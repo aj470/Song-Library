@@ -140,17 +140,27 @@ public class SongLibController
                 else
                 {
                     Song song = new Song(n, a, alb, y);
-                    if (songList.getSelectionModel().getSelectedIndex() == 0)
+                    if(songList.getSelectionModel().getSelectedIndex() == 0)
                     {
                         songCollection.remove(0);
                         obsList.remove(0);
                         songList.getSelectionModel().select(0);
-                    } else
+                        if(songList.getSelectionModel().getSelectedItem() != null)
+                        {
+                        	songDisplay(songList.getSelectionModel().getSelectedItem());
+                        }
+                        
+                    } 
+                    else
                     {
                         songCollection.remove(songList.getSelectionModel().getSelectedIndex());
                         obsList.remove(songList.getSelectionModel().getSelectedIndex());
                         songList.getSelectionModel().select(songList.getSelectionModel().getSelectedIndex() + 1);
                         songDisplay(songList.getSelectionModel().getSelectedItem());
+                    }
+                    if(obsList.size() == 0)
+                    {
+                    	songDisplay(new Song("","","",""));
                     }
                 }
             }
