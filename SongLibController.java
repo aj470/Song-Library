@@ -174,26 +174,23 @@ public class SongLibController
                     else
                     {
                         Song s = songList.getSelectionModel().getSelectedItem();
-                        if(n.isEmpty())
+                        if(!n.isEmpty())
+                        {
+                        	songList.getSelectionModel().getSelectedItem().setName(n);
+                        }
+                        if(!a.isEmpty())
                         {
                             songList.getSelectionModel().getSelectedItem().setArtist(a);
-                            songList.getSelectionModel().getSelectedItem().setAlbum(alb);
-                            songList.getSelectionModel().getSelectedItem().setYear(y);
                         }
-                        else if(a.isEmpty())
+                        if(!alb.isEmpty())
                         {
-                            songList.getSelectionModel().getSelectedItem().setName(n);
-                            songList.getSelectionModel().getSelectedItem().setAlbum(alb);
-                            songList.getSelectionModel().getSelectedItem().setYear(y);
+                        	songList.getSelectionModel().getSelectedItem().setAlbum(alb);
                         }
-                        else
+                        if(!y.isEmpty())
                         {
-                            songList.getSelectionModel().getSelectedItem().setName(n);
-                            songList.getSelectionModel().getSelectedItem().setArtist(a);
-                            songList.getSelectionModel().getSelectedItem().setAlbum(alb);
-                            songList.getSelectionModel().getSelectedItem().setYear(y);
+                        	songList.getSelectionModel().getSelectedItem().setYear(y);
                         }
-
+                       
                         songCollection.set(songList.getSelectionModel().getSelectedIndex(), s);
                         obsList.sort(compareToSong);
                         songDisplay(s);
