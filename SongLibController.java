@@ -175,11 +175,11 @@ public class SongLibController
                     else
                     {
                         Song s = songList.getSelectionModel().getSelectedItem();
-                        if(!n.isEmpty())
+                        if(!n.trim().isEmpty())
                         {
                         	songList.getSelectionModel().getSelectedItem().setName(n);
                         }
-                        if(!a.isEmpty())
+                        if(!a.trim().isEmpty())
                         {
                             songList.getSelectionModel().getSelectedItem().setArtist(a);
                         }
