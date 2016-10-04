@@ -78,10 +78,15 @@ public class Song implements Comparable<Song>
         return songYear;
     }
 
+    public String outFile()
+    {
+        return songName + "," + songArtist + ", " + songAlbum.trim() + ", " + songYear.trim() + "\n" ;
+    }
+
     @Override
     public String toString()
     {
-        return "Name: " + songName + "\n" + "Artist: " + songArtist + "\n" + "Album: " + songAlbum + "\n" + "Year: " + songYear;
+        return songName;
     }
 
     public int compareTo(Song song)
