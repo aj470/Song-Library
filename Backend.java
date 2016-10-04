@@ -110,6 +110,7 @@ public class Backend
 
                 songList.add(new Song(name, artist, album, year));
             }
+            input.close();
         }
         catch(FileNotFoundException e)
         {
