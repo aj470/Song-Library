@@ -5,63 +5,64 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SongLibController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SongLibController">
    <children>
-      <SplitPane dividerPositions="0.4966442953020134" layoutX="-2.0" layoutY="-3.0" prefHeight="354.0" prefWidth="514.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="-5.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+      <SplitPane dividerPositions="0.4463087248322148" layoutX="-2.0" layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="514.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="-5.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="343.0" prefWidth="291.0">
                <children>
-                  <VBox layoutX="1.0" layoutY="-1.0" prefHeight="354.0" prefWidth="275.0">
+                  <VBox layoutX="1.0" layoutY="-1.0" prefHeight="343.0" prefWidth="262.0">
                      <children>
-                        <Label text="Enter the following:" VBox.vgrow="ALWAYS">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Enter the following:" VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets left="55.0" top="30.0" />
+                              <Insets left="70.0" top="40.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="sName" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="194.0" promptText="Song Name" VBox.vgrow="ALWAYS">
+                        <TextField fx:id="sName" focusTraversable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="31.0" prefWidth="194.0" promptText="Song Name" VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets left="35.0" right="25.0" top="30.0" />
+                              <Insets left="30.0" right="30.0" top="30.0" />
                            </VBox.margin>
                         </TextField>
                         <HBox prefHeight="199.0" prefWidth="277.0">
                            <children>
-                              <VBox prefHeight="199.0" prefWidth="278.0">
+                              <VBox prefHeight="199.0" prefWidth="295.0">
                                  <children>
-                                    <TextField fx:id="sArtist" promptText="Artist">
+                                    <TextField fx:id="sArtist" focusTraversable="false" promptText="Artist" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
-                                          <Insets left="35.0" right="25.0" top="20.0" />
+                                          <Insets left="30.0" right="30.0" top="10.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField fx:id="sAlbum" promptText="Album (Optional)" VBox.vgrow="ALWAYS">
+                                    <TextField fx:id="sAlbum" focusTraversable="false" promptText="Album (Optional)" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
-                                          <Insets left="35.0" right="25.0" top="20.0" />
+                                          <Insets left="30.0" right="30.0" top="10.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField fx:id="sYear" promptText="Year (Optional)" VBox.vgrow="ALWAYS">
+                                    <TextField fx:id="sYear" focusTraversable="false" promptText="Year (Optional)" VBox.vgrow="ALWAYS">
                                        <VBox.margin>
-                                          <Insets left="35.0" right="25.0" top="20.0" />
+                                          <Insets bottom="20.0" left="30.0" right="30.0" top="10.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <HBox alignment="CENTER" prefHeight="58.0" prefWidth="190.0">
                                        <children>
-                                          <Button fx:id="add" mnemonicParsing="false" onAction="#click" text="Add" HBox.hgrow="ALWAYS">
+                                          <Button fx:id="add" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#click" text="Add" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
-                                                <Insets left="17.0" top="15.0" />
+                                                <Insets right="5.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="delete" mnemonicParsing="false" onAction="#click" text="Delete" HBox.hgrow="ALWAYS">
+                                          <Button fx:id="delete" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#click" text="Delete" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
-                                                <Insets left="10.0" top="15.0" />
+                                                <Insets />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="edit" mnemonicParsing="false" onAction="#click" text="Edit" HBox.hgrow="ALWAYS">
+                                          <Button fx:id="edit" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#click" text="Edit" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
-                                                <Insets left="10.0" top="15.0" />
+                                                <Insets left="5.0" />
                                              </HBox.margin>
                                           </Button>
                                        </children>
@@ -72,15 +73,19 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Button fx:id="display" layoutX="205.0" layoutY="279.0" mnemonicParsing="false" onAction="#click" prefHeight="31.0" prefWidth="75.0" text="Display" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <AnchorPane minHeight="0.0" minWidth="-Infinity" prefHeight="343.0" prefWidth="308.0">
                <children>
-                  <ListView fx:id="songList" layoutY="1.0" prefHeight="352.0" prefWidth="262.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="1.0" />
+                  <SplitPane dividerPositions="0.7331378299120235" layoutX="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="343.0" prefWidth="313.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                     <items>
+                        <ListView fx:id="songList" focusTraversable="false" onMouseClicked="#songListSelection" prefHeight="192.0" prefWidth="252.0" SplitPane.resizableWithParent="false" />
+                        <TextArea fx:id="songDetailDisplay" focusTraversable="false" onMouseClicked="#songListSelection" prefHeight="116.0" prefWidth="311.0" />
+                     </items>
+                  </SplitPane>
                </children>
             </AnchorPane>
-        </items>
+         </items>
       </SplitPane>
    </children>
    <padding>
